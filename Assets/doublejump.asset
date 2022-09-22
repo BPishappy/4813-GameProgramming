@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42e38ad58d15842439c54e6cf70722c3, type: 3}
   m_Name: doublejump
   m_EditorClassIdentifier: 
-  collectableTypes: 1
   powerupPickup: 0
-  sprite: {fileID: -1347888785, guid: e4cf1e6cc738caf408ebd98517ada700, type: 3}
-  outlineSprite: {fileID: -1735671447, guid: e4cf1e6cc738caf408ebd98517ada700, type: 3}
+  sprite: {fileID: -1735671447, guid: e4cf1e6cc738caf408ebd98517ada700, type: 3}
+  outlineSprite: {fileID: 2117420421, guid: e4cf1e6cc738caf408ebd98517ada700, type: 3}
   respawnable: 1

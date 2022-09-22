@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: RefillHealth
   m_EditorClassIdentifier: 
   powerupPickup: 0
-  sprite: {fileID: 570264477, guid: e4cf1e6cc738caf408ebd98517ada700, type: 3}
-  outlineSprite: {fileID: -1347888785, guid: e4cf1e6cc738caf408ebd98517ada700, type: 3}
+  sprite: {fileID: -1347888785, guid: e4cf1e6cc738caf408ebd98517ada700, type: 3}
+  outlineSprite: {fileID: 2117420421, guid: e4cf1e6cc738caf408ebd98517ada700, type: 3}
   respawnable: 1
