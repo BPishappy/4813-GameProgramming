@@ -9,6 +9,7 @@ public class Collectible : MonoBehaviour
         Blue,
         Red,
         Green,
+        Yellow,
     }
     public CollectibleType collectableType;
     public Powerup powerup;
@@ -24,6 +25,9 @@ public class Collectible : MonoBehaviour
                 break;
             case CollectibleType.Red:
                 sr.color = Color.red;
+                break;
+            case CollectibleType.Yellow:
+                sr.color = Color.yellow;
                 break;
         }
     }
