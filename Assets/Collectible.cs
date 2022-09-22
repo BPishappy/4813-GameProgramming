@@ -3,9 +3,15 @@ using UnityEngine;
 public class Collectible : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer sr;
-
+    [SerializeField] private SoCollectible collectableobject;
+    public enum CollectibleType
+    {
+        Blue,
+        Red,
+        Green,
+    }
     public CollectibleType collectableType;
-
+    public Powerup powerup;
     public void ChangePlayerColor()
     {
         switch (collectableType)
@@ -19,18 +25,25 @@ public class Collectible : MonoBehaviour
             case CollectibleType.Red:
                 sr.color = Color.red;
                 break;
-            case CollectibleType.Yellow:
-                sr.color = Color.yellow;
-                break;
         }
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             ChangePlayerColor();
-
+            ActivatedPower();
             Destroy(gameObject);
         }
     }
+    public void ActivatedPower()
+    {
+        switch (powerup)
+        {
+            case Powerup.DoubleJump:
+                Debug.Log("CanDoubleJump");
+                break;
+        }
+    }
+
 }
