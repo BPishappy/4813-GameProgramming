@@ -12,7 +12,6 @@ public class FinishLine : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D col)
     {
-        AudioManage.instance.SoundEffect(7); 
         if (!col.CompareTag(PlayerTag)) return;
         if (_gameManager.GetCurrentBuildIndex() < 3)
         {
