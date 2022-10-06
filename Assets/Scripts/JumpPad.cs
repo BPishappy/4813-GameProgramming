@@ -13,7 +13,7 @@ public class JumpPad : MonoBehaviour
     
     public void TriggerJumpPad()
     {
-        AudioManage.instance.PlayerSFX(8); // Jump Pad sound when sprung
+        AudioManage.instance.SoundEffect(3); // Jump Pad sound when sprung
         animator.SetTrigger(Bounce);
     }
 }

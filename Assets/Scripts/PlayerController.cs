@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
             if (!_canDoubleJump) return; // If the player cannot double jump, return void. (Stop here)
             _canDoubleJump = false; // Else set double jump to false, then jump.
         }
-        AudioManage.instance.PlayerSFX(2);
+        AudioManage.instance.SoundEffect(2);
 
         Jump(jumpForce);
     }
@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
     {
         FindGameManager();
         _gameManager.LivesReduce();
-        AudioManage.instance.PlayerSFX(10);
+        AudioManage.instance.SoundEffect(5);
         _gameManager.ProcessPlayerDeath();
     }
     

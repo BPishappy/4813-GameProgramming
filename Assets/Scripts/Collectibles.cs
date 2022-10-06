@@ -16,7 +16,7 @@ public class Collectibles : MonoBehaviour
 
     public CollectibleType GetCollectibleInfoOnContact()
     {
-        AudioManage.instance.PlayerSFX(1); // Collectible sound when collect and respawned
+        AudioManage.instance.SoundEffect(1); // Collectible sound when collect and respawned
         gameObject.SetActive(false);
 
         if (_isRespawnable)
