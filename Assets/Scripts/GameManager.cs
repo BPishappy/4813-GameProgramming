@@ -1,7 +1,7 @@
-using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -52,18 +52,17 @@ public class GameManager : MonoBehaviour
         UpdateLives();
         LoadScene(GetCurrentBuildIndex());
     }
-
-    public void LoadNextLevel()
+    public IEnumerator LoadNextLevel()
     {
         UpdateLives();
         var nextSceneIndex = GetCurrentBuildIndex() + 1;
-        
         if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
         {
             nextSceneIndex = 0;
         }
-        
-        LoadScene(nextSceneIndex);
+        yield return new WaitForSeconds(2F);
+        SceneManager.LoadScene(nextSceneIndex);
+
     }
 
     public int GetCurrentBuildIndex()

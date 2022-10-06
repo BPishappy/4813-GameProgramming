@@ -32,35 +32,11 @@ public class PlayerCollision : MonoBehaviour
                 default:
                     break;
             }
-            
-            Debug.Log(collectibleType);
         }
 
         if (_playerCollider.IsTouchingLayers(LayerMask.GetMask("Hazard")))
         {
             playerController.TakeDamage();
         }
-
-        #region Unused
-
-        /*if (!col.TryGetComponent(out Collectibles collectible)) return;  
-        // This is an inverted if. If the above condition is not met, return void (stop this function).
-        
-        var collectibleType = collectible.GetCollectibleInfoOnContact();
-
-        switch (collectibleType)
-            {
-                case CollectibleType.Red:
-                    spriteRenderer.color = redColor;
-                    break;
-                case CollectibleType.Green:
-                    spriteRenderer.color = greenColor;
-                    break;
-                case CollectibleType.Blue:
-                    spriteRenderer.color = blueColor;
-                    break;
-            }*/
-
-        #endregion
     }
 }

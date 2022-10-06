@@ -143,6 +143,7 @@ public class PlayerController : MonoBehaviour
     {
         FindGameManager();
         _gameManager.LivesReduce();
+        AudioManage.instance.PlayerSFX(10);
         _gameManager.ProcessPlayerDeath();
     }
     
