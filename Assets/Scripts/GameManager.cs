@@ -1,14 +1,15 @@
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private Transform LivesText;
-    [SerializeField] public int PlayerLives = 3;
-    [SerializeField] private PlayerLives playerLives;
-    // Simple singleton script. This is the easiest way to create and understand a singleton script.
+    [SerializeField] private UIManager uiManager;
+    [SerializeField] private int playerLives = 3;
+    [SerializeField] private float timeBeforeSceneChange = 1.5f;
+    [SerializeField] private ParticleSystem dead;
+    
     
     private void Awake()
     {
@@ -29,60 +30,67 @@ public class GameManager : MonoBehaviour
         UpdateLives();
     }
 
-    private void Update()
+    private void ParticleDead()
     {
-        if(PlayerLives <= 0)
-        {
-            Destroy(gameObject);
-            LoadScene(0);
-        }
-        if(GetCurrentBuildIndex() == 0)
-        {
-            LivesText.gameObject.SetActive(false);
-            Destroy(gameObject);
-        }
-        else
-        {
-            LivesText.gameObject.SetActive(true);
-        }
-    } 
-
+        dead.Play();
+    }
     public void ProcessPlayerDeath()
     {
-        UpdateLives();
-        LoadScene(GetCurrentBuildIndex());
+        playerLives--;
+        
+        switch (playerLives)
+        {
+            case >= 1:
+                LoadScene(GetCurrentBuildIndex());
+                UpdateLives();
+                break;
+            default:
+                ReturnToMainMenu();
+                break;
+        }
+        ParticleDead();
+        
     }
-    public IEnumerator LoadNextLevel()
+
+    public void ReturnToMainMenu()
     {
-        UpdateLives();
+        LoadScene(0);
+    }
+    
+    public void LoadNextLevel()
+    {
         var nextSceneIndex = GetCurrentBuildIndex() + 1;
+        
         if (nextSceneIndex == SceneManager.sceneCountInBuildSettings)
         {
-            nextSceneIndex = 0;
+            nextSceneIndex = 1;
         }
-        yield return new WaitForSeconds(2F);
-        SceneManager.LoadScene(nextSceneIndex);
-
+        
+        LoadScene(nextSceneIndex);
     }
 
-    public int GetCurrentBuildIndex()
+    private int GetCurrentBuildIndex()
     {
         return SceneManager.GetActiveScene().buildIndex;
     }
 
-    public void LivesReduce()
+    private void LoadScene(int buildIndex)
     {
-        PlayerLives -= 1;
-    }
-    public void LoadScene(int buildindex)
-    {
-        UpdateLives();
-        SceneManager.LoadScene(buildindex);
-        DOTween.KillAll();
+        StartCoroutine(BeginSceneLoad(buildIndex));
     }
 
-    public void UpdateLives()
+    private IEnumerator BeginSceneLoad(int buildIndex)
     {
-        playerLives.UpdatePlayerLives(PlayerLives);
+        yield return new WaitForSeconds(timeBeforeSceneChange);
+        SceneManager.LoadScene(buildIndex);
+        DOTween.KillAll();
+
+        if (buildIndex != 0) yield break;
+        Destroy(gameObject);
+    }
+
+    private void UpdateLives()
+    {
+        uiManager.UpdateLives(playerLives);
     }
 }

@@ -8,12 +8,12 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - sprite
   - Water
   - UI
   - Ground
   - Hazard
-  - 
+  - Jumppad
   - 
   - 
   - 
